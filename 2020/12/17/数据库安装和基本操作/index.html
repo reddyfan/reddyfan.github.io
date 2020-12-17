@@ -16,7 +16,7 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
 
-    <link rel="canonical" href="http://example.com/2020/12/17/数据库安装和基本操作/">
+    <link rel="canonical" href="http://reddyfan.cool/2020/12/17/数据库安装和基本操作/">
 
     
         <link rel="alternate" href="/atom.xml" type="application/atom+xml">
@@ -91,7 +91,7 @@
 
     <form action="https://google.com/search" method="get">
         <fieldset role="search">
-            <input type="hidden" name="q" value="site:http://example.com/">
+            <input type="hidden" name="q" value="site:http://reddyfan.cool/">
             <input class="search" type="text" name="q" results="0" placeholder="Search">
         </fieldset>
     </form>
@@ -183,35 +183,31 @@
 </ul>
 <h2 id="数据库基本操作"><a href="#数据库基本操作" class="headerlink" title="数据库基本操作"></a>数据库基本操作</h2><ul>
 <li><p><strong>连接MySQL数据库</strong></p>
-<pre><code>mysql -u root -p</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>修改数据库密码</strong></p>
-<pre><code class="sql">alter user &#39;root&#39;@&#39;localhost&#39; identified by &#39;123456&#39;;</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">&#x27;123456&#x27;</span>;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>设置弱口令，mysql默认需要强口令，开发中不推荐使用。</strong></p>
-<pre><code class="sql">cat /var/log/mysqld.log | grep password</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /var/log/mysqld.log | grep password</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>设置弱口令，mysql默认需要强口令，开发中不推荐使用。</strong></p>
-<pre><code class="sql">set global validate_password_policy=0;
-set global validate_password_length=6;
-alter user &#39;root&#39;@&#39;localhost&#39; identified by &#39;123456&#39;;</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> validate_password_policy=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> validate_password_length=<span class="number">6</span>;</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">&#x27;123456&#x27;</span>;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>如果需要使用弱口令密码设置</strong></p>
-<pre><code class="sql">set global validate_password_policy=0;
-set global validate_password_length=6;</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> validate_password_policy=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">global</span> validate_password_length=<span class="number">6</span>;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>查看服务器版本</strong></p>
-<pre><code class="sql">select version();</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">version</span>();</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>查看数据库</strong></p>
-<pre><code class="sql">show databases;</code></pre>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">databases</span>;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>查看表</strong></p>
-<pre><code class="sql">show tables;</code></pre>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">tables</span>;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>切换数据库</strong></p>
-<pre><code class="sql">use 数据库名</code></pre>
-</li>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> 数据库名</span><br></pre></td></tr></table></figure></li>
 </ul>
 
         </div>

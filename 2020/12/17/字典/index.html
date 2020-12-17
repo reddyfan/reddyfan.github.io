@@ -16,7 +16,7 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
 
-    <link rel="canonical" href="http://example.com/2020/12/17/字典/">
+    <link rel="canonical" href="http://reddyfan.cool/2020/12/17/字典/">
 
     
         <link rel="alternate" href="/atom.xml" type="application/atom+xml">
@@ -91,7 +91,7 @@
 
     <form action="https://google.com/search" method="get">
         <fieldset role="search">
-            <input type="hidden" name="q" value="site:http://example.com/">
+            <input type="hidden" name="q" value="site:http://reddyfan.cool/">
             <input class="search" type="text" name="q" results="0" placeholder="Search">
         </fieldset>
     </form>
@@ -139,25 +139,7 @@
 <li><p><strong>字典[key]：</strong> 获取字典中指定key对应的值（如果key不存在报错)</p>
 </li>
 <li><p><strong>字典.get(key):</strong>  获取字典中指定key对应的值（如果key不存在返回None)</p>
-<pre><code class="python"># 获取单个值
-# 方法一:
-dog_name = dog[&#39;name&#39;]
-print(dog_name)  # 程程
-# 没有对应的key会报错
-# print(dog[&#39;height&#39;])
-
-# 方法二:
-get_name = dog.get(&#39;name&#39;)
-print(get_name)
-# 没有对应的key不会报错
-print(dog.get(&#39;fan&#39;))
-# key不存在时,放回默认值
-print(dog.get(&#39;fan&#39;, 0))
-&quot;&quot;&quot;
-程程
-None
-0
-&quot;&quot;&quot;</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取单个值</span></span><br><span class="line"><span class="comment"># 方法一:</span></span><br><span class="line">dog_name = dog[<span class="string">&#x27;name&#x27;</span>]</span><br><span class="line">print(dog_name)  <span class="comment"># 程程</span></span><br><span class="line"><span class="comment"># 没有对应的key会报错</span></span><br><span class="line"><span class="comment"># print(dog[&#x27;height&#x27;])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法二:</span></span><br><span class="line">get_name = dog.get(<span class="string">&#x27;name&#x27;</span>)</span><br><span class="line">print(get_name)</span><br><span class="line"><span class="comment"># 没有对应的key不会报错</span></span><br><span class="line">print(dog.get(<span class="string">&#x27;fan&#x27;</span>))</span><br><span class="line"><span class="comment"># key不存在时,放回默认值</span></span><br><span class="line">print(dog.get(<span class="string">&#x27;fan&#x27;</span>, <span class="number">0</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">程程</span></span><br><span class="line"><span class="string">None</span></span><br><span class="line"><span class="string">0</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -176,73 +158,55 @@ None
 <p>​                                            循环体</p>
 </li>
 </ul>
-<pre><code class="python">print(&quot;====遍历====&quot;)
-print(&quot;====方法一=====&quot;)
-# 遍历
-# 方法一
-for i in dog:
-    print(dog[i])
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">&quot;====遍历====&quot;</span>)</span><br><span class="line">print(<span class="string">&quot;====方法一=====&quot;</span>)</span><br><span class="line"><span class="comment"># 遍历</span></span><br><span class="line"><span class="comment"># 方法一</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> dog:</span><br><span class="line">    print(dog[i])</span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;====方法二=====&quot;</span>)</span><br><span class="line"><span class="comment"># 方法二</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> dog.values():</span><br><span class="line">    print(i)</span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;====方法三=====&quot;</span>)</span><br><span class="line"><span class="comment"># 方法三</span></span><br><span class="line"><span class="keyword">for</span> k, v <span class="keyword">in</span> dog.items():</span><br><span class="line">    print(k, <span class="string">&#x27;:&#x27;</span>, v)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">====遍历====</span></span><br><span class="line"><span class="string">====方法一=====</span></span><br><span class="line"><span class="string">程程</span></span><br><span class="line"><span class="string">3</span></span><br><span class="line"><span class="string">哈士奇</span></span><br><span class="line"><span class="string">公</span></span><br><span class="line"><span class="string">20</span></span><br><span class="line"><span class="string">====方法二=====</span></span><br><span class="line"><span class="string">程程</span></span><br><span class="line"><span class="string">3</span></span><br><span class="line"><span class="string">哈士奇</span></span><br><span class="line"><span class="string">公</span></span><br><span class="line"><span class="string">20</span></span><br><span class="line"><span class="string">====方法三=====</span></span><br><span class="line"><span class="string">name : 程程</span></span><br><span class="line"><span class="string">age : 3</span></span><br><span class="line"><span class="string">breed : 哈士奇</span></span><br><span class="line"><span class="string">gender : 公</span></span><br><span class="line"><span class="string">weight : 20</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
 
-print(&quot;====方法二=====&quot;)
-# 方法二
-for i in dog.values():
-    print(i)
-
-print(&quot;====方法三=====&quot;)
-# 方法三
-for k, v in dog.items():
-    print(k, &#39;:&#39;, v)
-
-</code></pre>
 </li>
 </ul>
-<p>  “””<br>  ====遍历====<br>  ====方法一=====<br>  程程<br>  3<br>  哈士奇<br>  公<br>  20<br>  ====方法二=====<br>  程程<br>  3<br>  哈士奇<br>  公<br>  20<br>  ====方法三=====<br>  name : 程程<br>  age : 3<br>  breed : 哈士奇<br>  gender : 公<br>  weight : 20<br>  “””</p>
-<pre><code>
-### 增    -    添加键值对
-
-* 字典[key]=value：如果key存在，就将key对应的值，修改成指定的值。如果key不存在，就是添加键值对。
-* 字典.setdefault(key,value)：不能修改，只能增加，如果key已存在，不添加操作。
-
-### 删除      
-
-* del 字典[key]：删除指定key对应的键值对。(key不存在，会报错）
-* 字典.pop(key)：取出指定key对应的值，并放回指定的值。
-* 字典.popitem()：随机取出指定key对应的键值对，并放回键值对。
-
-## 字典相关的操作
-
-* 字典不支持加法和乘法运算
-* 字典只支持比较相等，不支持比较大小。
-* 保证键值对的个数、值一致，为True,否则False
-* `in` 和 `not in` ：判断字典中是否存在指定的key。
-
-## 相关函数
-
-* **len(字典)：** 统计字典中键值对的个数
-* **dict(数据)：** 将指定的数据转化成字典。
-* 要求：
-  1. 是容器型数据类型
-  2. 数据中元素是有且只有两个元素的容器（小容器）
-  3. 小容器中的第一个元素是不可变类型。
-
-## 字典转成其他的数据类型
-
-* bool(字典)  -    空字典会转换成False,其他都是True
-* list(字典)：将字典的key作为列表的元素
-* tuple(字典)：将字典的key作为元组的元素
-* str(字典)：将字典的&#123;&#125;和键值对全部转换为字符串
-
-## 相关的方法
-
-* 字典.clear()：将字典清空
-* 字典.copy()：复制一个字典并放回。（也复制了字典的内容）
-* 字典.fromkeys(序列)/dict.fromkeys(序列)：创建新的字典，字典的key传入序列中的元素，值是固定的None。（此序列元素类型不可变）
-* 字典.fromkeys(序列,值)/dict.fromkeys(序列，值)：创建新的字典，字典的key传入序列中的元素，值是指定的值。
-* 字典.items()：获取字典所有的key和value，返回一个容器,容器中的元素是元组，每个元组对应一个键值对。（不是列表）
-* 字典.keys()：获取字典所有的key，返回一个容器。（不是列表）
-* 字典.values()：获取字典所有的value，返回一个容器。（不是列表）
-* 字典.update(序列)：将序列转化为字典，用转换的字典更新指定的字典。`（不存在就添加，存在就修改）`
-</code></pre>
+<h3 id="增-添加键值对"><a href="#增-添加键值对" class="headerlink" title="增    -    添加键值对"></a>增    -    添加键值对</h3><ul>
+<li>字典[key]=value：如果key存在，就将key对应的值，修改成指定的值。如果key不存在，就是添加键值对。</li>
+<li>字典.setdefault(key,value)：不能修改，只能增加，如果key已存在，不添加操作。</li>
+</ul>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><ul>
+<li>del 字典[key]：删除指定key对应的键值对。(key不存在，会报错）</li>
+<li>字典.pop(key)：取出指定key对应的值，并放回指定的值。</li>
+<li>字典.popitem()：随机取出指定key对应的键值对，并放回键值对。</li>
+</ul>
+<h2 id="字典相关的操作"><a href="#字典相关的操作" class="headerlink" title="字典相关的操作"></a>字典相关的操作</h2><ul>
+<li>字典不支持加法和乘法运算</li>
+<li>字典只支持比较相等，不支持比较大小。<ul>
+<li>保证键值对的个数、值一致，为True,否则False</li>
+</ul>
+</li>
+<li><code>in</code> 和 <code>not in</code> ：判断字典中是否存在指定的key。</li>
+</ul>
+<h2 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h2><ul>
+<li><strong>len(字典)：</strong> 统计字典中键值对的个数</li>
+<li><strong>dict(数据)：</strong> 将指定的数据转化成字典。<ul>
+<li>要求：<ol>
+<li>是容器型数据类型</li>
+<li>数据中元素是有且只有两个元素的容器（小容器）</li>
+<li>小容器中的第一个元素是不可变类型。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="字典转成其他的数据类型"><a href="#字典转成其他的数据类型" class="headerlink" title="字典转成其他的数据类型"></a>字典转成其他的数据类型</h2><ul>
+<li>bool(字典)  -    空字典会转换成False,其他都是True</li>
+<li>list(字典)：将字典的key作为列表的元素</li>
+<li>tuple(字典)：将字典的key作为元组的元素</li>
+<li>str(字典)：将字典的{}和键值对全部转换为字符串</li>
+</ul>
+<h2 id="相关的方法"><a href="#相关的方法" class="headerlink" title="相关的方法"></a>相关的方法</h2><ul>
+<li>字典.clear()：将字典清空</li>
+<li>字典.copy()：复制一个字典并放回。（也复制了字典的内容）</li>
+<li>字典.fromkeys(序列)/dict.fromkeys(序列)：创建新的字典，字典的key传入序列中的元素，值是固定的None。（此序列元素类型不可变）</li>
+<li>字典.fromkeys(序列,值)/dict.fromkeys(序列，值)：创建新的字典，字典的key传入序列中的元素，值是指定的值。</li>
+<li>字典.items()：获取字典所有的key和value，返回一个容器,容器中的元素是元组，每个元组对应一个键值对。（不是列表）</li>
+<li>字典.keys()：获取字典所有的key，返回一个容器。（不是列表）</li>
+<li>字典.values()：获取字典所有的value，返回一个容器。（不是列表）</li>
+<li>字典.update(序列)：将序列转化为字典，用转换的字典更新指定的字典。<code>（不存在就添加，存在就修改）</code></li>
+</ul>
 
         </div>
         <footer>

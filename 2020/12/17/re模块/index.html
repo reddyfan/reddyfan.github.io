@@ -16,7 +16,7 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
 
-    <link rel="canonical" href="http://example.com/2020/12/17/re模块/">
+    <link rel="canonical" href="http://reddyfan.cool/2020/12/17/re模块/">
 
     
         <link rel="alternate" href="/atom.xml" type="application/atom+xml">
@@ -91,7 +91,7 @@
 
     <form action="https://google.com/search" method="get">
         <fieldset role="search">
-            <input type="hidden" name="q" value="site:http://example.com/">
+            <input type="hidden" name="q" value="site:http://reddyfan.cool/">
             <input class="search" type="text" name="q" results="0" placeholder="Search">
         </fieldset>
     </form>
@@ -118,115 +118,51 @@
         </header>
         <div class="entry-content">
             <h2 id="re模块"><a href="#re模块" class="headerlink" title="re模块"></a>re模块</h2><h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p> <strong>re.compile(正则表达式)</strong> -   编译正则表达式，创建正则表达式对象</p>
-<pre><code class="python">import re
-# 编译
-co = re.compile(r&#39;\d*&#39;)
-print(re.fullmatch(co, &#39;&#39;))
-print(re.fullmatch(co, &#39;123&#39;))
-# 使用compile返回正则对象，可以直接用对象.函数名()的方式调用re模块的方法
-print(co.fullmatch(&#39;2342&#39;))
-&quot;&quot;&quot;
-&lt;re.Match object; span=(0, 0), match=&#39;&#39;&gt;
-&lt;re.Match object; span=(0, 3), match=&#39;123&#39;&gt;
-&lt;re.Match object; span=(0, 4), match=&#39;2342&#39;&gt;
-&quot;&quot;&quot;</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="comment"># 编译</span></span><br><span class="line">co = re.<span class="built_in">compile</span>(<span class="string">r&#x27;\d*&#x27;</span>)</span><br><span class="line">print(re.fullmatch(co, <span class="string">&#x27;&#x27;</span>))</span><br><span class="line">print(re.fullmatch(co, <span class="string">&#x27;123&#x27;</span>))</span><br><span class="line"><span class="comment"># 使用compile返回正则对象，可以直接用对象.函数名()的方式调用re模块的方法</span></span><br><span class="line">print(co.fullmatch(<span class="string">&#x27;2342&#x27;</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;re.Match object; span=(0, 0), match=&#x27;&#x27;&gt;</span></span><br><span class="line"><span class="string">&lt;re.Match object; span=(0, 3), match=&#x27;123&#x27;&gt;</span></span><br><span class="line"><span class="string">&lt;re.Match object; span=(0, 4), match=&#x27;2342&#x27;&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h3><ul>
 <li><p><strong>fullmatch(正则表达式, 字符串)</strong> - 完全匹配（整个字符串和正则表达式进行匹配）</p>
-<pre><code class="python"># fullmath 完全匹配
-print(re.fullmatch(r&#39;\d[a-z]+&#39;, &#39;9abc&#39;))</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># fullmath 完全匹配</span></span><br><span class="line">print(re.fullmatch(<span class="string">r&#x27;\d[a-z]+&#x27;</span>, <span class="string">&#x27;9abc&#x27;</span>))</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>match(正则表达式, 字符串)</strong> - 匹配字符串开头，如果匹配不到结果是None，如果匹配成功了结果是匹配对象</p>
-<pre><code class="python"># math 匹配字符串开头
-print(re.match(r&#39;nba&#39;, &#39;nba123&#39;))
-print(re.match(r&#39;_&#39;, &#39;nba123&#39;))
-print(re.match(r&#39;_&#39;, &#39;_nba123&#39;))
-&quot;&quot;&quot;
-&lt;re.Match object; span=(0, 4), match=&#39;9abc&#39;&gt;
-&lt;re.Match object; span=(0, 3), match=&#39;nba&#39;&gt;
-None
-&lt;re.Match object; span=(0, 1), match=&#39;_&#39;&gt;
-&quot;&quot;&quot;</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># math 匹配字符串开头</span></span><br><span class="line">print(re.match(<span class="string">r&#x27;nba&#x27;</span>, <span class="string">&#x27;nba123&#x27;</span>))</span><br><span class="line">print(re.match(<span class="string">r&#x27;_&#x27;</span>, <span class="string">&#x27;nba123&#x27;</span>))</span><br><span class="line">print(re.match(<span class="string">r&#x27;_&#x27;</span>, <span class="string">&#x27;_nba123&#x27;</span>))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&lt;re.Match object; span=(0, 4), match=&#x27;9abc&#x27;&gt;</span></span><br><span class="line"><span class="string">&lt;re.Match object; span=(0, 3), match=&#x27;nba&#x27;&gt;</span></span><br><span class="line"><span class="string">None</span></span><br><span class="line"><span class="string">&lt;re.Match object; span=(0, 1), match=&#x27;_&#x27;&gt;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>匹配对象.group()</strong>   -  获取整个正则表达式匹配到结果</p>
-<pre><code class="python">result = re.fullmatch(r&#39;\d[a-z]+&#39;, &#39;9abc&#39;)
-print(result.group())  # 9abc
-result = re.match(r&#39;nba&#39;, &#39;nba123&#39;)
-print(result.group())  # nba</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">result = re.fullmatch(<span class="string">r&#x27;\d[a-z]+&#x27;</span>, <span class="string">&#x27;9abc&#x27;</span>)</span><br><span class="line">print(result.group())  <span class="comment"># 9abc</span></span><br><span class="line">result = re.match(<span class="string">r&#x27;nba&#x27;</span>, <span class="string">&#x27;nba123&#x27;</span>)</span><br><span class="line">print(result.group())  <span class="comment"># nba</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>匹配对象.group(分组号)</strong>  - 获取正则表达式中指定的分组匹配到的结果(分组号从1开始)</p>
-<pre><code class="python">re_str = r&#39;(\d&#123;2&#125;)-([a-z]&#123;3&#125;)&#39;
-result = re.match(re_str, &#39;23-sjm回款及时发货&#39;)
-print(result.group(1))  # 23
-print(result.group(2))  # sjm</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">re_str = <span class="string">r&#x27;(\d&#123;2&#125;)-([a-z]&#123;3&#125;)&#x27;</span></span><br><span class="line">result = re.match(re_str, <span class="string">&#x27;23-sjm回款及时发货&#x27;</span>)</span><br><span class="line">print(result.group(<span class="number">1</span>))  <span class="comment"># 23</span></span><br><span class="line">print(result.group(<span class="number">2</span>))  <span class="comment"># sjm</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>获取匹配到的子串的范围</strong></p>
-<pre><code class="python"># 匹配对象.span()
-print(&#39;===============&#39;)
-print(result.span())  # (0, 6)
-print(result.span(2))  # (3, 6)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 匹配对象.span()</span></span><br><span class="line">print(<span class="string">&#x27;===============&#x27;</span>)</span><br><span class="line">print(result.span())  <span class="comment"># (0, 6)</span></span><br><span class="line">print(result.span(<span class="number">2</span>))  <span class="comment"># (3, 6)</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>获取原字符串</strong></p>
-<pre><code class="python"># 匹配对象.string
-print(result.string)  # 23-sjm回款及时发货</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 匹配对象.string</span></span><br><span class="line">print(result.string)  <span class="comment"># 23-sjm回款及时发货</span></span><br></pre></td></tr></table></figure>
 <h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3></li>
 <li><p><strong>search(正则表达式,字符串)</strong> -   在字符串中查找第一个能和正则表达式匹配的子串，找到返回对象，未找到返回None。</p>
-<pre><code class="python"># search
-str1 = &#39;and123=hu123aaa456klk98!ll7hu123oop&#39;
-result = re.search(r&#39;\d+&#39;, str1)
-print(result)  # &lt;re.Match object; span=(3, 6), match=&#39;123&#39;&gt;</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># search</span></span><br><span class="line">str1 = <span class="string">&#x27;and123=hu123aaa456klk98!ll7hu123oop&#x27;</span></span><br><span class="line">result = re.search(<span class="string">r&#x27;\d+&#x27;</span>, str1)</span><br><span class="line">print(result)  <span class="comment"># &lt;re.Match object; span=(3, 6), match=&#x27;123&#x27;&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>findall(正则表达式,字符串)</strong>  - 获取字符串中所有满足正则表达式的子串，返回一个列表，列表中的元素是字符串</p>
-<pre><code class="python">str1 = &#39;and123=hu123aaa456klk98!ll7hu123oop&#39;
-result = re.findall(r&#39;\d+&#39;, str1)
-print(result)  # [&#39;123&#39;, &#39;123&#39;, &#39;456&#39;, &#39;98&#39;, &#39;7&#39;, &#39;123&#39;]</code></pre>
-<pre><code class="python"># findall中如果有分组，只获取分组匹配中的内容
-result = re.findall(r&#39;\d+[a-z]&#39;, str1)
-print(result)
-result = re.findall(r&#39;(\d+)[a-z]&#39;, str1)
-print(result)</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str1 = <span class="string">&#x27;and123=hu123aaa456klk98!ll7hu123oop&#x27;</span></span><br><span class="line">result = re.findall(<span class="string">r&#x27;\d+&#x27;</span>, str1)</span><br><span class="line">print(result)  <span class="comment"># [&#x27;123&#x27;, &#x27;123&#x27;, &#x27;456&#x27;, &#x27;98&#x27;, &#x27;7&#x27;, &#x27;123&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># findall中如果有分组，只获取分组匹配中的内容</span></span><br><span class="line">result = re.findall(<span class="string">r&#x27;\d+[a-z]&#x27;</span>, str1)</span><br><span class="line">print(result)</span><br><span class="line">result = re.findall(<span class="string">r&#x27;(\d+)[a-z]&#x27;</span>, str1)</span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>finditer(正则表达式,字符串)</strong>    -   获取字符串中所有满足正则表达式的子串。返回一个迭代器，迭代器中的元素是匹配对象</p>
-<pre><code class="python">st2 = &#39;9h3jabc===9k2mabc9293h0oabc==!!!&#39;
-result = re.findall(r&#39;(\d[a-zA-Z])&#123;2&#125;abc&#39;, st2)
-print(result)
-# finditer
-result = re.finditer(r&#39;(\d[a-zA-Z])&#123;2&#125;abc&#39;, st2)
-print(result)
-for i in result:
-    print(i.group())
-&quot;&quot;&quot;
-[&#39;3j&#39;, &#39;2m&#39;, &#39;0o&#39;]
-&lt;callable_iterator object at 0x0000016524CF2C08&gt;
-9h3jabc
-9k2mabc
-3h0oabc
-&quot;&quot;&quot;</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">st2 = <span class="string">&#x27;9h3jabc===9k2mabc9293h0oabc==!!!&#x27;</span></span><br><span class="line">result = re.findall(<span class="string">r&#x27;(\d[a-zA-Z])&#123;2&#125;abc&#x27;</span>, st2)</span><br><span class="line">print(result)</span><br><span class="line"><span class="comment"># finditer</span></span><br><span class="line">result = re.finditer(<span class="string">r&#x27;(\d[a-zA-Z])&#123;2&#125;abc&#x27;</span>, st2)</span><br><span class="line">print(result)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> result:</span><br><span class="line">    print(i.group())</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">[&#x27;3j&#x27;, &#x27;2m&#x27;, &#x27;0o&#x27;]</span></span><br><span class="line"><span class="string">&lt;callable_iterator object at 0x0000016524CF2C08&gt;</span></span><br><span class="line"><span class="string">9h3jabc</span></span><br><span class="line"><span class="string">9k2mabc</span></span><br><span class="line"><span class="string">3h0oabc</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
 <h3 id="切割"><a href="#切割" class="headerlink" title="切割"></a>切割</h3><ul>
 <li><p><strong>split(正则表达式，切割的字符串，切割次数)</strong>    -     将字符串中能和正则表达式匹配的子串作为切割点，对字符串进行切割。返回值是列表，列表中的元素是字符串</p>
-<pre><code class="python"># split(正则表达式, 字符串)  - 将字符串中能和正则表达式匹配的子串作为切割点，对字符串进行切割。返回值是列表，列表中的元素是字符串
-str1 = &#39;and123=hu123aaa456klk98!ll7hu123oop&#39;
-result = re.split(r&#39;\d+&#39;, str1)
-print(result)  # [&#39;and&#39;, &#39;=hu&#39;, &#39;aaa&#39;, &#39;klk&#39;, &#39;!ll&#39;, &#39;hu&#39;, &#39;oop&#39;]
-# split(正则表达式, 字符串, 次数)  - 指定切割次数
-result = re.split(r&#39;\d+&#39;, str1, 3)
-print(result)     # [&#39;and&#39;, &#39;=hu&#39;, &#39;aaa&#39;, &#39;klk98!ll7hu123oop&#39;]</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># split(正则表达式, 字符串)  - 将字符串中能和正则表达式匹配的子串作为切割点，对字符串进行切割。返回值是列表，列表中的元素是字符串</span></span><br><span class="line">str1 = <span class="string">&#x27;and123=hu123aaa456klk98!ll7hu123oop&#x27;</span></span><br><span class="line">result = re.split(<span class="string">r&#x27;\d+&#x27;</span>, str1)</span><br><span class="line">print(result)  <span class="comment"># [&#x27;and&#x27;, &#x27;=hu&#x27;, &#x27;aaa&#x27;, &#x27;klk&#x27;, &#x27;!ll&#x27;, &#x27;hu&#x27;, &#x27;oop&#x27;]</span></span><br><span class="line"><span class="comment"># split(正则表达式, 字符串, 次数)  - 指定切割次数</span></span><br><span class="line">result = re.split(<span class="string">r&#x27;\d+&#x27;</span>, str1, <span class="number">3</span>)</span><br><span class="line">print(result)     <span class="comment"># [&#x27;and&#x27;, &#x27;=hu&#x27;, &#x27;aaa&#x27;, &#x27;klk98!ll7hu123oop&#x27;]</span></span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
 <h3 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h3><ul>
 <li><strong>sub(正则表达式, 字符串1, 字符串2, 次数)</strong>    -    字符串中能和正则表达式匹配的子串全部替换为要替换的字符串</li>
 </ul>
-<pre><code class="python"># sub(正则表达式, 字符串1, 字符串2)  -  将字符串2中能和正则表达式匹配的子串全部替换成字符串1
-# sub(正则表达式, 字符串1, 字符串2, 次数)   -  限制替换次数
-str1 = &#39;and123=hu123aaa456klk98!ll7hu123oop&#39;
-new_str1 = sub(r&#39;\d+&#39;, &#39;+&#39;, str1)
-print(new_str1)
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sub(正则表达式, 字符串1, 字符串2)  -  将字符串2中能和正则表达式匹配的子串全部替换成字符串1</span></span><br><span class="line"><span class="comment"># sub(正则表达式, 字符串1, 字符串2, 次数)   -  限制替换次数</span></span><br><span class="line">str1 = <span class="string">&#x27;and123=hu123aaa456klk98!ll7hu123oop&#x27;</span></span><br><span class="line">new_str1 = sub(<span class="string">r&#x27;\d+&#x27;</span>, <span class="string">&#x27;+&#x27;</span>, str1)</span><br><span class="line">print(new_str1)</span><br><span class="line"></span><br><span class="line">sentence = <span class="string">&#x27;你丫是傻 叉吗? 我操你大爷的. F u c k you.&#x27;</span></span><br><span class="line">re_str = <span class="string">r&#x27;(?i)[操肏艹草曹]|f\s*u\s*c\s*k|s\s*h\s*i\s*t|傻\s*[比屄逼叉缺吊屌]|煞\s*笔&#x27;</span></span><br><span class="line">new_sentence = sub(re_str, <span class="string">&#x27;*&#x27;</span>, sentence)</span><br><span class="line">print(new_sentence)</span><br></pre></td></tr></table></figure>
 
-sentence = &#39;你丫是傻 叉吗? 我操你大爷的. F u c k you.&#39;
-re_str = r&#39;(?i)[操肏艹草曹]|f\s*u\s*c\s*k|s\s*h\s*i\s*t|傻\s*[比屄逼叉缺吊屌]|煞\s*笔&#39;
-new_sentence = sub(re_str, &#39;*&#39;, sentence)
-print(new_sentence)</code></pre>
 <h2 id="正则表达式修饰符"><a href="#正则表达式修饰符" class="headerlink" title="正则表达式修饰符"></a>正则表达式修饰符</h2><table>
 <thead>
 <tr>
@@ -247,18 +183,7 @@ print(new_sentence)</code></pre>
 <td align="center">使 . 匹配包括换行在内的所有字符</td>
 </tr>
 </tbody></table>
-<pre><code class="python">print(re.search(r&#39;L&#39;,&#39;hello&#39;))  # None
-print(re.search(r&#39;L&#39;, &#39;hello&#39;, re.I))  # 不区分大小写&lt;re.Match object; span=(2, 3), match=&#39;l&#39;&gt;
-
-# \w+$ 表示匹配以一个或者多个字母结尾
-# re.M 可以进行多行匹配，每个换行都认为是一个结尾
-print(re.findall(r&#39;\w+$&#39;,&#39;i am boy\n you are girl\n he is man&#39;,re.M)) # [&#39;boy&#39;, &#39;girl&#39;, &#39;man&#39;]
-# 不实用re.M修饰符，只会匹配到最后的 man
-print(re.findall(r&#39;\w+$&#39;,&#39;i am boy\n you are girl\n he is man&#39;)) # [&#39;man&#39;]
-
-print(re.search(r&#39;.&#39;,&#39;\n&#39;)) # None . 匹配除了 \n 以外的所有字符
-print(re.search(r&#39;.&#39;,&#39;\n&#39;,re.S)) # &#39;\n&#39;  匹配到了 \n</code></pre>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">print(re.search(<span class="string">r&#x27;L&#x27;</span>,<span class="string">&#x27;hello&#x27;</span>))  <span class="comment"># None</span></span><br><span class="line">print(re.search(<span class="string">r&#x27;L&#x27;</span>, <span class="string">&#x27;hello&#x27;</span>, re.I))  <span class="comment"># 不区分大小写&lt;re.Match object; span=(2, 3), match=&#x27;l&#x27;&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># \w+$ 表示匹配以一个或者多个字母结尾</span></span><br><span class="line"><span class="comment"># re.M 可以进行多行匹配，每个换行都认为是一个结尾</span></span><br><span class="line">print(re.findall(<span class="string">r&#x27;\w+$&#x27;</span>,<span class="string">&#x27;i am boy\n you are girl\n he is man&#x27;</span>,re.M)) <span class="comment"># [&#x27;boy&#x27;, &#x27;girl&#x27;, &#x27;man&#x27;]</span></span><br><span class="line"><span class="comment"># 不实用re.M修饰符，只会匹配到最后的 man</span></span><br><span class="line">print(re.findall(<span class="string">r&#x27;\w+$&#x27;</span>,<span class="string">&#x27;i am boy\n you are girl\n he is man&#x27;</span>)) <span class="comment"># [&#x27;man&#x27;]</span></span><br><span class="line"></span><br><span class="line">print(re.search(<span class="string">r&#x27;.&#x27;</span>,<span class="string">&#x27;\n&#x27;</span>)) <span class="comment"># None . 匹配除了 \n 以外的所有字符</span></span><br><span class="line">print(re.search(<span class="string">r&#x27;.&#x27;</span>,<span class="string">&#x27;\n&#x27;</span>,re.S)) <span class="comment"># &#x27;\n&#x27;  匹配到了 \n</span></span><br></pre></td></tr></table></figure>
         </div>
         <footer>
             <p class="meta">

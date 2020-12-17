@@ -16,7 +16,7 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
 
-    <link rel="canonical" href="http://example.com/2020/12/17/数据库相关操作/">
+    <link rel="canonical" href="http://reddyfan.cool/2020/12/17/数据库相关操作/">
 
     
         <link rel="alternate" href="/atom.xml" type="application/atom+xml">
@@ -91,7 +91,7 @@
 
     <form action="https://google.com/search" method="get">
         <fieldset role="search">
-            <input type="hidden" name="q" value="site:http://example.com/">
+            <input type="hidden" name="q" value="site:http://reddyfan.cool/">
             <input class="search" type="text" name="q" results="0" placeholder="Search">
         </fieldset>
     </form>
@@ -118,98 +118,70 @@
         </header>
         <div class="entry-content">
             <h2 id="DDL-数据定义语言"><a href="#DDL-数据定义语言" class="headerlink" title="DDL    -    数据定义语言"></a>DDL    -    数据定义语言</h2><h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><p>create database 数据库名 default charset utf8 (default 后面的语句，是修改字符集)</p>
-<pre><code class="mysql">create database school default charset utf8;</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database school default charset utf8;</span><br></pre></td></tr></table></figure>
+
 <h3 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h3><p>drop 数据库名</p>
-<pre><code class="mysql">drop database
---  if exists 存在才删除
-drop database  if exists school;</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">drop database</span><br><span class="line">--  if exists 存在才删除</span><br><span class="line">drop database  if exists school;</span><br></pre></td></tr></table></figure>
+
 <h3 id="切换数据库"><a href="#切换数据库" class="headerlink" title="切换数据库"></a>切换数据库</h3><p>use 数据库名</p>
-<pre><code class="mysql">use school</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use school</span><br></pre></td></tr></table></figure>
+
 <h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><p>create table 表名<br>(<br>字段名1    类型    约束,</p>
 <p>字段名2    类型    约束,</p>
 <p>…</p>
 <p>字段名n    类型    约束,<br>primary key(主键名)</p>
 <p>);</p>
 <p>注：primary key 设置主键</p>
-<pre><code class="mysql">-- 创建表
-create table tb_student
-(
-stuid integer not null,
-stuname varchar(10) not null,
-stusex boolean default 1,
-stubirth date,
-stuaddr varchar(50),
-primary key(stuid)
-);</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-- 创建表</span><br><span class="line">create table tb_student</span><br><span class="line">(</span><br><span class="line">stuid integer not null,</span><br><span class="line">stuname varchar(10) not null,</span><br><span class="line">stusex boolean default 1,</span><br><span class="line">stubirth date,</span><br><span class="line">stuaddr varchar(50),</span><br><span class="line">primary key(stuid)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
 <h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><p>drop table 表名；</p>
-<pre><code class="mysql">drop table school;</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table school;</span><br></pre></td></tr></table></figure>
+
 <h3 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h3><p>添加字段</p>
 <p>alter table 表名 add column 字段名 类型 约束；</p>
 <p>添加外键</p>
 <p>alter table 表名add constraint 外键名<br>foreign key (外键) references 关联的外键表 (关联的外键名);</p>
-<pre><code class="mysql">-- 修改学生表添加一个表示学生属于哪个学院的列
-alter table tb_student add column colid integer not null;
--- 给students添加外键
--- 指定学生表中colid跟学院表的colid是什么关系
-alter table tb_student add constraint  fk_student_colid 
-foreign key (colid) references tb_college (colid);
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- 修改学生表添加一个表示学生属于哪个学院的列</span><br><span class="line">alter table tb_student add column colid integer not null;</span><br><span class="line">-- 给students添加外键</span><br><span class="line">-- 指定学生表中colid跟学院表的colid是什么关系</span><br><span class="line">alter table tb_student add constraint  fk_student_colid </span><br><span class="line">foreign key (colid) references tb_college (colid);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="DML-数据操作语言"><a href="#DML-数据操作语言" class="headerlink" title="DML    -    数据操作语言"></a>DML    -    数据操作语言</h2><h3 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h3><ul>
 <li><p>按位依次添加</p>
 </li>
 <li><p>按字段名添加</p>
 </li>
 <li><p>批量添加</p>
-<pre><code class="mysql">-- 按位依次添加
-insert into tb_college values (1,&#39;计算机学院&#39;,&#39;研究计算机科学与技术的学院&#39;);
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">-- 按位依次添加</span><br><span class="line">insert into tb_college values (1,&#39;计算机学院&#39;,&#39;研究计算机科学与技术的学院&#39;);</span><br><span class="line"></span><br><span class="line">-- 按字段名添加</span><br><span class="line">insert into tb_college (colname,colintro) values (&#39;计算机学院&#39;,&#39;研究计算机科学与技术的学院&#39;);</span><br><span class="line"></span><br><span class="line">-- 按字段名批量插入数据</span><br><span class="line">insert into tb_college (colname,colintro) values </span><br><span class="line">(&#39;外国语学院&#39;,&#39;学习德语、法语、英语、西班牙语、日语&#39;),</span><br><span class="line">(&#39;经济管理学院&#39;,&#39;研究计算机科学与技术的学院&#39;),</span><br><span class="line">(&#39;数学学院&#39;,&#39;研究数学的学院&#39;);</span><br><span class="line"></span><br><span class="line">-- 按位批量添加学生数据</span><br><span class="line">insert into tb_student values</span><br><span class="line">(1001,&#39;乌曼巴&#39;,1,&#39;1999-11-12&#39;,&#39;四川南充&#39;,&#39;1&#39;),</span><br><span class="line">(1002,&#39;张三&#39;,1,&#39;1999-11-12&#39;,&#39;四川成都&#39;,&#39;2&#39;),</span><br><span class="line">(1003,&#39;乌曼巴&#39;,1,&#39;1999-11-12&#39;,&#39;四川内江&#39;,&#39;1&#39;),</span><br><span class="line">(1004,&#39;李四&#39;,1,&#39;1999-11-12&#39;,&#39;四川成都&#39;,&#39;3&#39;),</span><br><span class="line">(1005,&#39;郑鑫&#39;,1,&#39;1999-11-12&#39;,&#39;广东广州&#39;,&#39;1&#39;);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
--- 按字段名添加
-insert into tb_college (colname,colintro) values (&#39;计算机学院&#39;,&#39;研究计算机科学与技术的学院&#39;);
-
--- 按字段名批量插入数据
-insert into tb_college (colname,colintro) values 
-(&#39;外国语学院&#39;,&#39;学习德语、法语、英语、西班牙语、日语&#39;),
-(&#39;经济管理学院&#39;,&#39;研究计算机科学与技术的学院&#39;),
-(&#39;数学学院&#39;,&#39;研究数学的学院&#39;);
-
--- 按位批量添加学生数据
-insert into tb_student values
-(1001,&#39;乌曼巴&#39;,1,&#39;1999-11-12&#39;,&#39;四川南充&#39;,&#39;1&#39;),
-(1002,&#39;张三&#39;,1,&#39;1999-11-12&#39;,&#39;四川成都&#39;,&#39;2&#39;),
-(1003,&#39;乌曼巴&#39;,1,&#39;1999-11-12&#39;,&#39;四川内江&#39;,&#39;1&#39;),
-(1004,&#39;李四&#39;,1,&#39;1999-11-12&#39;,&#39;四川成都&#39;,&#39;3&#39;),
-(1005,&#39;郑鑫&#39;,1,&#39;1999-11-12&#39;,&#39;广东广州&#39;,&#39;1&#39;);
-
-</code></pre>
 </li>
 </ul>
-<pre><code>
-### 更新数据
+<h3 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h3><p>update 表名 set 字段名1=修改的内容1，字段名2=修改的内容2 where 条件；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update tb_student set stusex&#x3D;0 where stuid&#x3D;1004;</span><br><span class="line">update tb_student set stuaddr&#x3D;null,stuname&#x3D;&#39;李冰冰&#39;,stubirth&#x3D;&#39;1980-3-25&#39; where stuid&#x3D;1004;</span><br></pre></td></tr></table></figure>
 
-update 表名 set 字段名1=修改的内容1，字段名2=修改的内容2 where 条件；
-
-~~~ mysql
-update tb_student set stusex=0 where stuid=1004;
-update tb_student set stuaddr=null,stuname=&#39;李冰冰&#39;,stubirth=&#39;1980-3-25&#39; where stuid=1004;</code></pre>
 <h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><p>delete from  表名  where 条件;</p>
-<pre><code class="mysql">delete from tb_student where stuid=1003;</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from tb_student where stuid&#x3D;1003;</span><br></pre></td></tr></table></figure>
+
 <p>删除全表数据（截断表）<br>truncate table  表名 ;</p>
-<pre><code class="mysql">truncate table tb_student;</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truncate table tb_student;</span><br></pre></td></tr></table></figure>
+
 <h2 id="DCL-数据控制语言"><a href="#DCL-数据控制语言" class="headerlink" title="DCL    -    数据控制语言"></a>DCL    -    数据控制语言</h2><h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><p>create user ‘<code>用户名</code>‘@’<code>ip地址</code>‘  identified by 密码;（<code>%</code>代表任意ip，<code>localhost</code>代表本机）</p>
-<pre><code class="mysql">create user &#39;reddy&#39;@&#39;%&#39;  identified by &#39;Reddyfan2020@&#39;;</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create user &#39;reddy&#39;@&#39;%&#39;  identified by &#39;Reddyfan2020@&#39;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h3><p>drop user ‘<code>用户名</code>‘@’<code>ip地址</code>‘</p>
-<pre><code class="mysql">-- 删除用户
-drop user &#39;reddy&#39;@&#39;%&#39;;</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 删除用户</span><br><span class="line">drop user &#39;reddy&#39;@&#39;%&#39;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h3><ul>
 <li><p><strong>授予所有的权限 *.* 所有对象.所有权限</strong></p>
-<pre><code class="mysql">grant all privileges *.* &#39;reddy&#39;@&#39;%&#39; with grant option;</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges *.* &#39;reddy&#39;@&#39;%&#39; with grant option;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>授予用户指定数据库（对象）指定权限</strong></p>
-<pre><code class="mysql">grant DELETE,UPDATE,SELECT on school.* to &#39;reddy&#39;@&#39;%&#39;;</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant DELETE,UPDATE,SELECT on school.* to &#39;reddy&#39;@&#39;%&#39;;</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
 <h3 id="召回权限"><a href="#召回权限" class="headerlink" title="召回权限"></a>召回权限</h3><p>revoke all privileges on      数据名.*  from  ‘<code>用户名</code>‘@’<code>ip地址</code>‘</p>
-<pre><code class="mysql">revoke all privileges on      school.* from  &#39;reddy&#39;@&#39;%&#39;;</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">revoke all privileges on 	 school.* from  &#39;reddy&#39;@&#39;%&#39;;</span><br></pre></td></tr></table></figure>
+
 
         </div>
         <footer>
