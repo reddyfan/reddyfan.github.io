@@ -6,7 +6,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="zh"><!--<![endif]-->
 <head>
     <meta charset="UTF-8">
-    <title>Hello World</title>
+    <title>范金炜的学习笔记</title>
 
     <meta name="author" content="Reddy Fan">
 
@@ -16,7 +16,7 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
 
-    <link rel="canonical" href="http://example.com/2020/12/16/hello-world/">
+    <link rel="canonical" href="http://example.com/2020/12/17/字典/">
 
     
         <link rel="alternate" href="/atom.xml" type="application/atom+xml">
@@ -111,33 +111,150 @@
         <div>
     <article class="hentry" role="article">
         <header>
-            <h1 class="entry-title">Hello World</h1>
+            <h1 class="entry-title"></h1>
             <p class="meta">
-                <time datetime="2020-12-16T06:52:06.761Z" data-updated="true">Wed Dec 16 2020</time>
+                <time datetime="2020-12-17T00:36:42.387Z" data-updated="true">Thu Dec 17 2020</time>
             </p>
         </header>
         <div class="entry-content">
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+            <h2 id="字典是什么"><a href="#字典是什么" class="headerlink" title="字典是什么"></a>字典是什么</h2><blockquote>
+<p> 字典是无序、可变的容器型数据类型，元素以键值对存储，以键获值。</p>
+<p>什么时候用字典：需要保存多个数据，并需要对数据（多个数据的意义不同）进行区分。</p>
+</blockquote>
+<ul>
+<li><p>字典是容器型数据类型，容器的标志<code>&#123;&#125;</code>，多个元素用逗号隔开。</p>
+</li>
+<li><p>字典的元素都是键值对，以键获值。{key1:value1,key2:value2,…}</p>
+</li>
+<li><p>字典中元素： 键值对</p>
+<ul>
+<li>键    -     不可变；唯一（一般是字符串）</li>
+<li>值    -    任何类型的数据；可重复</li>
+</ul>
+</li>
+</ul>
+<h2 id="字典的增删改查"><a href="#字典的增删改查" class="headerlink" title="字典的增删改查"></a>字典的增删改查</h2><h3 id="查-获取字典的值"><a href="#查-获取字典的值" class="headerlink" title="查    -    获取字典的值"></a>查    -    获取字典的值</h3><ul>
+<li><p><strong>获取单个元素对应的值：</strong></p>
+<ul>
+<li><p><strong>字典[key]：</strong> 获取字典中指定key对应的值（如果key不存在报错)</p>
+</li>
+<li><p><strong>字典.get(key):</strong>  获取字典中指定key对应的值（如果key不存在返回None)</p>
+<pre><code class="python"># 获取单个值
+# 方法一:
+dog_name = dog[&#39;name&#39;]
+print(dog_name)  # 程程
+# 没有对应的key会报错
+# print(dog[&#39;height&#39;])
+
+# 方法二:
+get_name = dog.get(&#39;name&#39;)
+print(get_name)
+# 没有对应的key不会报错
+print(dog.get(&#39;fan&#39;))
+# key不存在时,放回默认值
+print(dog.get(&#39;fan&#39;, 0))
+&quot;&quot;&quot;
+程程
+None
+0
+&quot;&quot;&quot;</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>遍历：</strong></p>
+<ul>
+<li><p><strong>方法一：</strong> 变量取到的值是字典中的key。<code>（此方法效率最高）</code></p>
+<p>​            for 变量 in 字典：</p>
+<p>​                            循环体</p>
+</li>
+<li><p><strong>方法二：</strong> 遍历获取所有的值</p>
+<p>​            for  变量 in 字典.values():</p>
+<p>​                                循环体</p>
+</li>
+<li><p><strong>方法三：</strong> 获取所有的key和value</p>
+<p>​            for 变量1，变量2 in 字典.items():</p>
+<p>​                                            循环体</p>
+</li>
+</ul>
+<pre><code class="python">print(&quot;====遍历====&quot;)
+print(&quot;====方法一=====&quot;)
+# 遍历
+# 方法一
+for i in dog:
+    print(dog[i])
+
+print(&quot;====方法二=====&quot;)
+# 方法二
+for i in dog.values():
+    print(i)
+
+print(&quot;====方法三=====&quot;)
+# 方法三
+for k, v in dog.items():
+    print(k, &#39;:&#39;, v)
+
+</code></pre>
+</li>
+</ul>
+<p>  “””<br>  ====遍历====<br>  ====方法一=====<br>  程程<br>  3<br>  哈士奇<br>  公<br>  20<br>  ====方法二=====<br>  程程<br>  3<br>  哈士奇<br>  公<br>  20<br>  ====方法三=====<br>  name : 程程<br>  age : 3<br>  breed : 哈士奇<br>  gender : 公<br>  weight : 20<br>  “””</p>
+<pre><code>
+### 增    -    添加键值对
+
+* 字典[key]=value：如果key存在，就将key对应的值，修改成指定的值。如果key不存在，就是添加键值对。
+* 字典.setdefault(key,value)：不能修改，只能增加，如果key已存在，不添加操作。
+
+### 删除      
+
+* del 字典[key]：删除指定key对应的键值对。(key不存在，会报错）
+* 字典.pop(key)：取出指定key对应的值，并放回指定的值。
+* 字典.popitem()：随机取出指定key对应的键值对，并放回键值对。
+
+## 字典相关的操作
+
+* 字典不支持加法和乘法运算
+* 字典只支持比较相等，不支持比较大小。
+* 保证键值对的个数、值一致，为True,否则False
+* `in` 和 `not in` ：判断字典中是否存在指定的key。
+
+## 相关函数
+
+* **len(字典)：** 统计字典中键值对的个数
+* **dict(数据)：** 将指定的数据转化成字典。
+* 要求：
+  1. 是容器型数据类型
+  2. 数据中元素是有且只有两个元素的容器（小容器）
+  3. 小容器中的第一个元素是不可变类型。
+
+## 字典转成其他的数据类型
+
+* bool(字典)  -    空字典会转换成False,其他都是True
+* list(字典)：将字典的key作为列表的元素
+* tuple(字典)：将字典的key作为元组的元素
+* str(字典)：将字典的&#123;&#125;和键值对全部转换为字符串
+
+## 相关的方法
+
+* 字典.clear()：将字典清空
+* 字典.copy()：复制一个字典并放回。（也复制了字典的内容）
+* 字典.fromkeys(序列)/dict.fromkeys(序列)：创建新的字典，字典的key传入序列中的元素，值是固定的None。（此序列元素类型不可变）
+* 字典.fromkeys(序列,值)/dict.fromkeys(序列，值)：创建新的字典，字典的key传入序列中的元素，值是指定的值。
+* 字典.items()：获取字典所有的key和value，返回一个容器,容器中的元素是元组，每个元组对应一个键值对。（不是列表）
+* 字典.keys()：获取字典所有的key，返回一个容器。（不是列表）
+* 字典.values()：获取字典所有的value，返回一个容器。（不是列表）
+* 字典.update(序列)：将序列转化为字典，用转换的字典更新指定的字典。`（不存在就添加，存在就修改）`
+</code></pre>
 
         </div>
         <footer>
             <p class="meta">
                 <span class="byline author vcard">Posted by <span class="fn">Reddy Fan</span></span>
-                <time datetime="2020-12-16T06:52:06.761Z" data-updated="true">Wed Dec 16 2020</time>
+                <time datetime="2020-12-17T00:36:42.387Z" data-updated="true">Thu Dec 17 2020</time>
                 
             </p>
             <div class="sharing">
     
         <a class="twitter-share-button"
-           target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=Hello%20World">
+           target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=">
             Tweet
         </a>
     
@@ -148,6 +265,8 @@
                 <a class="basic-alignment left" href="/" title="Previous Post: ">« </a>
                 
 
+                
+                <a class="basic-alignment right" href="/" title="Previous Post: Hello World">Hello World »</a>
                 
             </p>
         </footer>

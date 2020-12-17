@@ -6,7 +6,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="zh"><!--<![endif]-->
 <head>
     <meta charset="UTF-8">
-    <title>Hello World</title>
+    <title>范金炜的学习笔记</title>
 
     <meta name="author" content="Reddy Fan">
 
@@ -16,7 +16,7 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
 
-    <link rel="canonical" href="http://example.com/2020/12/16/hello-world/">
+    <link rel="canonical" href="http://example.com/2020/12/17/数据库安装和基本操作/">
 
     
         <link rel="alternate" href="/atom.xml" type="application/atom+xml">
@@ -111,33 +111,120 @@
         <div>
     <article class="hentry" role="article">
         <header>
-            <h1 class="entry-title">Hello World</h1>
+            <h1 class="entry-title"></h1>
             <p class="meta">
-                <time datetime="2020-12-16T06:52:06.761Z" data-updated="true">Wed Dec 16 2020</time>
+                <time datetime="2020-12-17T00:36:46.211Z" data-updated="true">Thu Dec 17 2020</time>
             </p>
         </header>
         <div class="entry-content">
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+            <h2 id="什么是数据库？"><a href="#什么是数据库？" class="headerlink" title="什么是数据库？"></a>什么是数据库？</h2><ul>
+<li>数据库（database）是一个以某种有组织的方式存储的数据集合。</li>
+<li>确切地说，数据库软件应称为DBMS（数据库管理系统）。数据库是通过DBMS创建    和操纵的容器。数据库可以是保存在硬设备上的文件，但也可以不是</li>
+<li>在很大程度上说，数据库究竟是文件还是别的什么东西并不重要，因为你并不直接访问数据库；你使用的是DBMS，它替你访问数据库。</li>
+<li>MYSQL是一种DBSM(数据库管理系统)，即数据库软件。</li>
+</ul>
+<h2 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库"></a>关系型数据库</h2><p><strong>关系型数据库</strong><br>​    1971年 —&gt; 关系模型<br>​    理论基础：关系代数和集合论<br>​    表现形式：用二维表保存数据<br>​        ~ 行：记录<br>​        ~ 列：字段（属性）<br><strong>编程语言：</strong> 结构化查询语言（SQL）<br>​        ~ DDL（数据定义语言）：create / drop / alter<br>​        ~ DML（数据操作语言）<br>​        ~ DQL（数据查询语言）<br>​        ~ DCL（数据控制语言）</p>
+<p><strong>关系型数据库产品：</strong></p>
+<ul>
+<li>Oracle / IBM Db2</li>
+<li>Microsoft SQL Server</li>
+<li>MySQL / PostgreSQL</li>
+</ul>
+<h2 id="安装配置数据库"><a href="#安装配置数据库" class="headerlink" title="安装配置数据库"></a>安装配置数据库</h2><ul>
+<li><p><strong>rpm包管理工具安装mysql</strong></p>
+<ul>
+<li><p><strong>删除和mariadb相关的包</strong></p>
+<pre><code>     yum list installed | grep mariadb | awk &#39;&#123;print $1&#125;&#39; | xargs yum erase -y </code></pre>
+</li>
+<li><p><strong>安装common包</strong></p>
+<pre><code>     rpm -ivh mysql-community-common-5.7.31-1.el7.x86_64.rpm</code></pre>
+</li>
+<li><p><strong>安装libs和libs-compat包</strong></p>
+<pre><code>       rpm -ivh mysql-community-libs-5.7.31-1.el7.x86_64.rpm
+       rpm -ivh mysql-community-libs-compat-5.7.31-1.el7.x86_64.rpm</code></pre>
+</li>
+<li><p><strong>安装devel包（给开发者使用的）</strong></p>
+<pre><code>       rpm -ivh mysql-community-devel-5.7.31-1.el7.x86_64.rpm</code></pre>
+</li>
+<li><p><strong>安装client包（客户端工具）</strong></p>
+<pre><code>       rpm -ivh mysql-community-client-5.7.31-1.el7.x86_64.rpm</code></pre>
+</li>
+<li><p><strong>安装server包（MySQL服务器程序）</strong></p>
+<pre><code>       yum install -y libaio numactl-libs
+       rpm -ivh mysql-community-server-5.7.31-1.el7.x86_64.rpm</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>mysql相关文件 （linux）</strong></p>
+<ul>
+<li>MySQL的数据文件 /var/lib/mysql</li>
+<li>MySQL的日志文件 /var/log/mysqld.log</li>
+<li>MySQL配置文件 vim  /etc/my.cnf</li>
+</ul>
+</li>
+<li><p><strong>rpm命令</strong></p>
+<ul>
+<li>安装软件：rpm -ivh</li>
+<li>移除软件：rpm -e</li>
+<li>查询软件：rpm -qa</li>
+</ul>
+</li>
+<li><p><strong>Linux 服务管理</strong></p>
+<ul>
+<li>启动MySQL：systemctl start mysqld</li>
+<li>停止MySQL：systemctl stop mysqld</li>
+<li>重启MySQL：systemctl restart mysqld</li>
+<li>查看MySQL状态：systemctl status mysqld</li>
+<li>服务监听 netstat -ntlp</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据库基本操作"><a href="#数据库基本操作" class="headerlink" title="数据库基本操作"></a>数据库基本操作</h2><ul>
+<li><p><strong>连接MySQL数据库</strong></p>
+<pre><code>mysql -u root -p</code></pre>
+</li>
+<li><p><strong>修改数据库密码</strong></p>
+<pre><code class="sql">alter user &#39;root&#39;@&#39;localhost&#39; identified by &#39;123456&#39;;</code></pre>
+</li>
+<li><p><strong>设置弱口令，mysql默认需要强口令，开发中不推荐使用。</strong></p>
+<pre><code class="sql">cat /var/log/mysqld.log | grep password</code></pre>
+</li>
+<li><p><strong>设置弱口令，mysql默认需要强口令，开发中不推荐使用。</strong></p>
+<pre><code class="sql">set global validate_password_policy=0;
+set global validate_password_length=6;
+alter user &#39;root&#39;@&#39;localhost&#39; identified by &#39;123456&#39;;</code></pre>
+</li>
+<li><p><strong>如果需要使用弱口令密码设置</strong></p>
+<pre><code class="sql">set global validate_password_policy=0;
+set global validate_password_length=6;</code></pre>
+</li>
+<li><p><strong>查看服务器版本</strong></p>
+<pre><code class="sql">select version();</code></pre>
+</li>
+<li><p><strong>查看数据库</strong></p>
+<pre><code class="sql">show databases;</code></pre>
+</li>
+<li><p><strong>查看表</strong></p>
+<pre><code class="sql">show tables;</code></pre>
+</li>
+<li><p><strong>切换数据库</strong></p>
+<pre><code class="sql">use 数据库名</code></pre>
+</li>
+</ul>
 
         </div>
         <footer>
             <p class="meta">
                 <span class="byline author vcard">Posted by <span class="fn">Reddy Fan</span></span>
-                <time datetime="2020-12-16T06:52:06.761Z" data-updated="true">Wed Dec 16 2020</time>
+                <time datetime="2020-12-17T00:36:46.211Z" data-updated="true">Thu Dec 17 2020</time>
                 
             </p>
             <div class="sharing">
     
         <a class="twitter-share-button"
-           target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=Hello%20World">
+           target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=">
             Tweet
         </a>
     
@@ -148,6 +235,8 @@
                 <a class="basic-alignment left" href="/" title="Previous Post: ">« </a>
                 
 
+                
+                <a class="basic-alignment right" href="/" title="Previous Post: "> »</a>
                 
             </p>
         </footer>

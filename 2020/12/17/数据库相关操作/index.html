@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7" lang="zh"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8" lang="zh"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="zh"><!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <title>范金炜的学习笔记</title>
+
+    <meta name="author" content="Reddy Fan">
+
+    <link rel="shortcut icon" href="/images/favicon.png">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+
+    <link rel="canonical" href="http://example.com/2020/12/17/数据库相关操作/">
+
+    
+        <link rel="alternate" href="/atom.xml" type="application/atom+xml">
+    
+
+    
+
+    
+<script src="/js/modernizr-2.0.js"></script>
+
+
+    
+<script src="/js/jquery-1.9.1.js"></script>
+
+
+    
+    <script>window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+
+            return t;
+        }(document, "script", "twitter-wjs"));</script>
+
+    
+    <link rel="me" href="https://twitter.com/your_twitter">
+    
+
+
+
+    
+<script src="/js/octo.js"></script>
+
+
+    
+<link rel="stylesheet" href="/css/octo.css">
+
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet"
+          type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet"
+          type="text/css">
+
+    
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+
+<header role="banner">
+    <hgroup>
+        <h1><a href="/">范金炜的学习笔记</a></h1>
+        
+    </hgroup>
+</header>
+
+<nav role="navigation">
+    
+        <ul class="subscription" data-subscription="rss">
+            <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+        </ul>
+    
+
+    <form action="https://google.com/search" method="get">
+        <fieldset role="search">
+            <input type="hidden" name="q" value="site:http://example.com/">
+            <input class="search" type="text" name="q" results="0" placeholder="Search">
+        </fieldset>
+    </form>
+
+    <ul class="main-navigation">
+        
+            <li><a href="/">Blog</a></li>
+        
+            <li><a href="/archives">Archives</a></li>
+        
+    </ul>
+</nav>
+
+
+<div id="main">
+    <div id="content">
+        <div>
+    <article class="hentry" role="article">
+        <header>
+            <h1 class="entry-title"></h1>
+            <p class="meta">
+                <time datetime="2020-12-17T00:36:44.755Z" data-updated="true">Thu Dec 17 2020</time>
+            </p>
+        </header>
+        <div class="entry-content">
+            <h2 id="DDL-数据定义语言"><a href="#DDL-数据定义语言" class="headerlink" title="DDL    -    数据定义语言"></a>DDL    -    数据定义语言</h2><h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><p>create database 数据库名 default charset utf8 (default 后面的语句，是修改字符集)</p>
+<pre><code class="mysql">create database school default charset utf8;</code></pre>
+<h3 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h3><p>drop 数据库名</p>
+<pre><code class="mysql">drop database
+--  if exists 存在才删除
+drop database  if exists school;</code></pre>
+<h3 id="切换数据库"><a href="#切换数据库" class="headerlink" title="切换数据库"></a>切换数据库</h3><p>use 数据库名</p>
+<pre><code class="mysql">use school</code></pre>
+<h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><p>create table 表名<br>(<br>字段名1    类型    约束,</p>
+<p>字段名2    类型    约束,</p>
+<p>…</p>
+<p>字段名n    类型    约束,<br>primary key(主键名)</p>
+<p>);</p>
+<p>注：primary key 设置主键</p>
+<pre><code class="mysql">-- 创建表
+create table tb_student
+(
+stuid integer not null,
+stuname varchar(10) not null,
+stusex boolean default 1,
+stubirth date,
+stuaddr varchar(50),
+primary key(stuid)
+);</code></pre>
+<h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><p>drop table 表名；</p>
+<pre><code class="mysql">drop table school;</code></pre>
+<h3 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h3><p>添加字段</p>
+<p>alter table 表名 add column 字段名 类型 约束；</p>
+<p>添加外键</p>
+<p>alter table 表名add constraint 外键名<br>foreign key (外键) references 关联的外键表 (关联的外键名);</p>
+<pre><code class="mysql">-- 修改学生表添加一个表示学生属于哪个学院的列
+alter table tb_student add column colid integer not null;
+-- 给students添加外键
+-- 指定学生表中colid跟学院表的colid是什么关系
+alter table tb_student add constraint  fk_student_colid 
+foreign key (colid) references tb_college (colid);
+</code></pre>
+<h2 id="DML-数据操作语言"><a href="#DML-数据操作语言" class="headerlink" title="DML    -    数据操作语言"></a>DML    -    数据操作语言</h2><h3 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h3><ul>
+<li><p>按位依次添加</p>
+</li>
+<li><p>按字段名添加</p>
+</li>
+<li><p>批量添加</p>
+<pre><code class="mysql">-- 按位依次添加
+insert into tb_college values (1,&#39;计算机学院&#39;,&#39;研究计算机科学与技术的学院&#39;);
+
+-- 按字段名添加
+insert into tb_college (colname,colintro) values (&#39;计算机学院&#39;,&#39;研究计算机科学与技术的学院&#39;);
+
+-- 按字段名批量插入数据
+insert into tb_college (colname,colintro) values 
+(&#39;外国语学院&#39;,&#39;学习德语、法语、英语、西班牙语、日语&#39;),
+(&#39;经济管理学院&#39;,&#39;研究计算机科学与技术的学院&#39;),
+(&#39;数学学院&#39;,&#39;研究数学的学院&#39;);
+
+-- 按位批量添加学生数据
+insert into tb_student values
+(1001,&#39;乌曼巴&#39;,1,&#39;1999-11-12&#39;,&#39;四川南充&#39;,&#39;1&#39;),
+(1002,&#39;张三&#39;,1,&#39;1999-11-12&#39;,&#39;四川成都&#39;,&#39;2&#39;),
+(1003,&#39;乌曼巴&#39;,1,&#39;1999-11-12&#39;,&#39;四川内江&#39;,&#39;1&#39;),
+(1004,&#39;李四&#39;,1,&#39;1999-11-12&#39;,&#39;四川成都&#39;,&#39;3&#39;),
+(1005,&#39;郑鑫&#39;,1,&#39;1999-11-12&#39;,&#39;广东广州&#39;,&#39;1&#39;);
+
+</code></pre>
+</li>
+</ul>
+<pre><code>
+### 更新数据
+
+update 表名 set 字段名1=修改的内容1，字段名2=修改的内容2 where 条件；
+
+~~~ mysql
+update tb_student set stusex=0 where stuid=1004;
+update tb_student set stuaddr=null,stuname=&#39;李冰冰&#39;,stubirth=&#39;1980-3-25&#39; where stuid=1004;</code></pre>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><p>delete from  表名  where 条件;</p>
+<pre><code class="mysql">delete from tb_student where stuid=1003;</code></pre>
+<p>删除全表数据（截断表）<br>truncate table  表名 ;</p>
+<pre><code class="mysql">truncate table tb_student;</code></pre>
+<h2 id="DCL-数据控制语言"><a href="#DCL-数据控制语言" class="headerlink" title="DCL    -    数据控制语言"></a>DCL    -    数据控制语言</h2><h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><p>create user ‘<code>用户名</code>‘@’<code>ip地址</code>‘  identified by 密码;（<code>%</code>代表任意ip，<code>localhost</code>代表本机）</p>
+<pre><code class="mysql">create user &#39;reddy&#39;@&#39;%&#39;  identified by &#39;Reddyfan2020@&#39;;</code></pre>
+<h3 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h3><p>drop user ‘<code>用户名</code>‘@’<code>ip地址</code>‘</p>
+<pre><code class="mysql">-- 删除用户
+drop user &#39;reddy&#39;@&#39;%&#39;;</code></pre>
+<h3 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h3><ul>
+<li><p><strong>授予所有的权限 *.* 所有对象.所有权限</strong></p>
+<pre><code class="mysql">grant all privileges *.* &#39;reddy&#39;@&#39;%&#39; with grant option;</code></pre>
+</li>
+<li><p><strong>授予用户指定数据库（对象）指定权限</strong></p>
+<pre><code class="mysql">grant DELETE,UPDATE,SELECT on school.* to &#39;reddy&#39;@&#39;%&#39;;</code></pre>
+</li>
+</ul>
+<h3 id="召回权限"><a href="#召回权限" class="headerlink" title="召回权限"></a>召回权限</h3><p>revoke all privileges on      数据名.*  from  ‘<code>用户名</code>‘@’<code>ip地址</code>‘</p>
+<pre><code class="mysql">revoke all privileges on      school.* from  &#39;reddy&#39;@&#39;%&#39;;</code></pre>
+
+        </div>
+        <footer>
+            <p class="meta">
+                <span class="byline author vcard">Posted by <span class="fn">Reddy Fan</span></span>
+                <time datetime="2020-12-17T00:36:44.755Z" data-updated="true">Thu Dec 17 2020</time>
+                
+            </p>
+            <div class="sharing">
+    
+        <a class="twitter-share-button"
+           target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=">
+            Tweet
+        </a>
+    
+</div>
+
+            <p class="meta">
+                
+                <a class="basic-alignment left" href="/" title="Previous Post: ">« </a>
+                
+
+                
+                <a class="basic-alignment right" href="/" title="Previous Post: "> »</a>
+                
+            </p>
+        </footer>
+    </article>
+
+    
+
+</div>
+
+<aside class="sidebar">
+    <section class="odd">
+    <h1>Recent Posts</h1>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/%E4%BA%8B%E5%8A%A1/">事务</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">数据库安装和基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/re%E6%A8%A1%E5%9D%97/">re模块</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/">数据库相关操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/%E5%AD%97%E5%85%B8/">字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/16/hello-world/">Hello World</a></li></ul>
+</section><section class="even">
+    <h1>GitHub Repos</h1>
+    <ul id="gh_repos">
+        <li class="loading">Status updating&#8230;</li>
+    </ul>
+
+    <a target="_blank" rel="noopener" href="https://github.com/your_github">@your_github</a> on GitHub
+
+    <script>
+        $(document).ready(function(){
+            const options = {
+                user: 'your_github',
+                count: 0,
+                skip_forks: true,
+                target: '#gh_repos'
+            }
+
+            function escapeHtml(str) {
+                return $('<div/>').text(str).html();
+            }
+
+            function render(target, repos){
+                let i, fragment = '', t = $(target)[0];
+
+                for(i = 0; i < repos.length; i++) {
+                    fragment += '<li><a href="'+repos[i].html_url+'">'+repos[i].name+'</a><p>'+escapeHtml(repos[i].description||'')+'</p></li>';
+                }
+                t.innerHTML = fragment;
+            }
+
+            $.ajax({
+                url: "https://api.github.com/users/"+options.user+"/repos?sort=pushed&callback=?",
+                dataType: 'jsonp',
+                error: function (err) {
+                    $(options.target + ' li.loading').addClass('error').text("Error loading feed");
+                },
+                success: function(data) {
+                    var repos = [];
+                    if (!data || !data.data) { return; }
+                    for (var i = 0; i < data.data.length; i++) {
+                        if (options.skip_forks && data.data[i].fork) { continue; }
+                        repos.push(data.data[i]);
+                    }
+                    if (options.count) { repos.splice(options.count); }
+                    render(options.target, repos);
+                }
+            });
+        });
+    </script>
+</section>
+</aside>
+
+    </div>
+</div>
+
+<footer role="contentinfo">
+    <p>
+        Copyright © 2020 - Reddy Fan -
+        <span class="credit">Generated using <a target="_blank" rel="noopener" href="https://github.com/jbreckmckye/hexo-theme-octo">Octo theme</a> for <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></span>
+    </p>
+</footer>
+
+
+
+</body>
+</html>

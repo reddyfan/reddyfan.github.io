@@ -1,0 +1,431 @@
+
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7" lang="zh"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8" lang="zh"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="zh"><!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <title>范金炜的学习笔记</title>
+
+    <meta name="author" content="Reddy Fan">
+
+    <link rel="shortcut icon" href="/images/favicon.png">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+
+    <link rel="canonical" href="http://example.com/2020/12/17/事务/">
+
+    
+        <link rel="alternate" href="/atom.xml" type="application/atom+xml">
+    
+
+    
+
+    
+<script src="/js/modernizr-2.0.js"></script>
+
+
+    
+<script src="/js/jquery-1.9.1.js"></script>
+
+
+    
+    <script>window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+
+            return t;
+        }(document, "script", "twitter-wjs"));</script>
+
+    
+    <link rel="me" href="https://twitter.com/your_twitter">
+    
+
+
+
+    
+<script src="/js/octo.js"></script>
+
+
+    
+<link rel="stylesheet" href="/css/octo.css">
+
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet"
+          type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet"
+          type="text/css">
+
+    
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+
+<header role="banner">
+    <hgroup>
+        <h1><a href="/">范金炜的学习笔记</a></h1>
+        
+    </hgroup>
+</header>
+
+<nav role="navigation">
+    
+        <ul class="subscription" data-subscription="rss">
+            <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+        </ul>
+    
+
+    <form action="https://google.com/search" method="get">
+        <fieldset role="search">
+            <input type="hidden" name="q" value="site:http://example.com/">
+            <input class="search" type="text" name="q" results="0" placeholder="Search">
+        </fieldset>
+    </form>
+
+    <ul class="main-navigation">
+        
+            <li><a href="/">Blog</a></li>
+        
+            <li><a href="/archives">Archives</a></li>
+        
+    </ul>
+</nav>
+
+
+<div id="main">
+    <div id="content">
+        <div>
+    <article class="hentry" role="article">
+        <header>
+            <h1 class="entry-title"></h1>
+            <p class="meta">
+                <time datetime="2020-12-17T00:36:48.052Z" data-updated="true">Thu Dec 17 2020</time>
+            </p>
+        </header>
+        <div class="entry-content">
+            <h2 id="事务简介"><a href="#事务简介" class="headerlink" title="事务简介"></a>事务简介</h2><h3 id="事务的由来"><a href="#事务的由来" class="headerlink" title="事务的由来"></a>事务的由来</h3><p>通常情况下，每个查询的执行都是相互对立的，但在实际开发中，较为复杂的业务逻辑都需要执行一组SQL语句，且这一组语句执行的数据结果存在一定的关联。要么执行成功，要么什么都不做。为了控制语句组的执行过程，数据库提供事务的机制进行控制。</p>
+<h3 id="事务的概述"><a href="#事务的概述" class="headerlink" title="事务的概述"></a>事务的概述</h3><p>事务是一组有着内在逻辑联系的SQL语句。支持事务的数据库系统要么正确执行事务里的所有SQL语句，要么把它们当作整体全部放弃，也就是说事务永远不会只完成一部分。</p>
+<h2 id="引擎"><a href="#引擎" class="headerlink" title="引擎"></a>引擎</h2><h3 id="什么是引擎"><a href="#什么是引擎" class="headerlink" title="什么是引擎"></a>什么是引擎</h3><p>数据库中的数据用各种不同的技术存储在文件(或内存)中。每一种技术都使用不同的存储机制、索引技巧、锁定水平并且最终提供广泛的、不同的功能。根据选择不同技术（引擎），能够获得额外的速度或者功能，从而改善应用的整体功能。</p>
+<h3 id="引擎-1"><a href="#引擎-1" class="headerlink" title="引擎"></a>引擎</h3><p><strong>主要有：</strong> InnoDB、MyIsam 、Mrg_Myisam、Memory、Blackhole、 CSV、Performance_Schema、Archive、Federated 。</p>
+<p><strong>支持事务的引擎</strong></p>
+<p>MySQL目前只有innoDB和BDB存储引擎，默认为innoDB。</p>
+<p><strong>InnoDB</strong></p>
+<p>InnoDB是MySQL默认的事务型引擎，也是最重要、最广泛的存储引擎。它的设计是用来处理大量短期事务，短期事务大部分是正常提交的，很少回滚。</p>
+<p><strong>特点:</strong> </p>
+<ol>
+<li><p>更新多的表，适合处理多重并发的更新请求。</p>
+</li>
+<li><p>支持事务。</p>
+</li>
+<li><p>可以从灾难中恢复（通过bin-log日志等）。</p>
+</li>
+<li><p>外键约束。只有他支持外键。</p>
+</li>
+<li><p>支持自动增加列属性auto_increment。</p>
+</li>
+</ol>
+<p><strong>MyISAM</strong></p>
+<p>MySQL在5.1之前，MyISAM是默认的引擎，MyISAM有大量的特心态，包括全文索引、压缩、空间函数。但是MyISAM不支持事务和行级锁，而且在崩溃后无法安全恢复。即使后续版本中MyISAM支持了事务，但是很多人的概念中依然是不支持事务的引擎。</p>
+<p><strong>特点:</strong></p>
+<p>​    1、不支持事务</p>
+<p>​    2、不支持外键</p>
+<p>​    3、查询速度很快。如果数据库insert和update的操作比较多的话采用表锁效率低（建议使用innodb）</p>
+<p>​    4、对表进行加锁</p>
+<p><strong>查看支持的引擎</strong></p>
+<pre><code class="mysql">show engines;</code></pre>
+<p><strong>查询某一个数据库中所有表的相关信息，包括引擎信息</strong></p>
+<pre><code class="mysql">show table status from 数据库名;</code></pre>
+<p><strong>修改表的引擎</strong></p>
+<pre><code class="mysql">alter table 表名 engine = innodb;</code></pre>
+<p><strong>显示表结构包括引擎信息</strong></p>
+<pre><code class="mysql">show create table 表名;</code></pre>
+<h2 id="ACID标准-事务的四大特性"><a href="#ACID标准-事务的四大特性" class="headerlink" title="ACID标准-事务的四大特性"></a>ACID标准-事务的四大特性</h2><h3 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h3><p>原子性 (Atomicity) ：数据库事务是不可分割的操作单位。</p>
+<ul>
+<li>事务中的所有操作, 要么全部完成, 要么全部不完成, 不会结束在中间某个环节。</li>
+<li>事务在执行过程中发生错误, 会被回滚 (Rollback) 到事务开始前的状态, 就像这个事务从来没有执行过一样。</li>
+</ul>
+<h3 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h3><p>一致性 (Consistency)：事务将数据库从一种状态变成另一种状态。</p>
+<p>在事务开始之前和事务结束以后, 数据库的完整性约束没有被破坏。</p>
+<p>在MySQL中，一致性主要由MySQL的日志机制处理，它记录数据库的所有变化，为事务恢复提供了跟踪记录。如在事务处理中发生错误，Mysql恢复过程将使用这些日志来发现事务是否已经完全执行，是否需要返回。</p>
+<h3 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h3><p>隔离性 (Isolation)：要求每个读写事务的对象与其他事务的操作对象能相互分离，即一个事务在提交前对其他事务事务都不可见。</p>
+<p>隔离性通常使用锁来实现，数据库中提供了一种粒度锁的策略，允许事务仅锁住一个实体对象的子集，以此提高事务之间的并发度。</p>
+<h3 id="持久性"><a href="#持久性" class="headerlink" title="持久性"></a>持久性</h3><p>持久性 (Durability)：事务一旦提交，其结果就是永久性的，即使发生死机等故障，数据也能将数据恢复。</p>
+<h2 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h2><p>数据库时多线程并发的，所以容易出现多个线程同时开启事务的情况，这样就会出现重复读、脏读或幻读情况，为了避免这些情况，Mysql中定义了四类隔离级别，用来限定事务内外的哪些改变是可见的，哪些是不可见的 。</p>
+<p>低级别的隔离一般支持高级别的并发处理，并拥有更低的系统开销。</p>
+<p> <strong>脏读</strong>：事务A修改了一个数据，但未提交，事务B读到了事务A未提交的更新结果，如果事务A提交失败，事务B读到的就是脏数据。</p>
+<p><strong>幻读：</strong> 用户读取某一范围的数据行时，另一个事务又在该范围内插入新行，当用户在读该范围的数据行时，就发现数据发生了改变。</p>
+<p><strong>不可重复读</strong>：在同一个事务中，对于同一份数据读取到的结果不一致。</p>
+<p>（比如，事务B在事务A提交前读到的结果，和提交后读到的结果可能不同。不可重复读出现的原因就是事务并发修改记录，要避免这种情况，最简单的方法就是对要修改的记录加锁，但这会导致锁竞争加剧，影响性能。）</p>
+<h3 id="未提交读"><a href="#未提交读" class="headerlink" title="未提交读"></a>未提交读</h3><p><strong>（READ UNCOMMITTED）：</strong></p>
+<p>读取未提交内容隔离级别，即所有事务都可以看到其他未提交的执行结果。该隔离级别很少用于实际应用，性能不如其他级别好。</p>
+<h3 id="已提交读"><a href="#已提交读" class="headerlink" title="已提交读"></a>已提交读</h3><p><strong>（READ COMMITTED ）：</strong></p>
+<p>该隔离级别满足隔离 简单定义，即只能看见已经提交事务所做的改变，这可以避免脏读。这种隔离级别支持所有的不可重复读。原因在于同一个事物的其他实例在该实例提交期间可能会有新的事务提交，所以同一查询可能放回不同结果。</p>
+<h3 id="可重复读"><a href="#可重复读" class="headerlink" title="可重复读"></a>可重复读</h3><p><strong>（REPEATABLE READ ）：</strong></p>
+<p>可重复读隔离级别，是Mysql的默认事务隔离级别。可确保同一事务的多个实例再并发读取数据时，会看到同样的数据行。此隔离级别只允许读取已经提交的记录，而且在一个事务两次读取一个记录期间保持一致，但是该事务不要求其他事务可串行化。类如，一个事务可以找到由一个已提交事务更新的记录，但是可能产生幻读。Innodb存储引擎通过多版本并发控制机制解决了该问题。</p>
+<h3 id="可序列化"><a href="#可序列化" class="headerlink" title="可序列化"></a>可序列化</h3><p><strong>（SERIALIZABLE）：</strong></p>
+<p>又称串行化，该级别是最高的隔离级别。通过强制事务排序，使之不可能相互重读，从而解决幻读、脏读和重复读的问题。它是在每个读的数据行加上共享锁，如果一个事务来查询同一份数据就必须等待，直到前一个事务完成并解除锁定位置。这个级别可能导致大量的超时现象和锁竞争，对数据库查询性能影响较大、所以实际开发中也很少使用。</p>
+<p>​                                                                                                四种隔离级别可能产生的问题</p>
+<table>
+<thead>
+<tr>
+<th align="center">隔离级别</th>
+<th align="center">读数据一致性</th>
+<th align="center">脏读</th>
+<th align="center">不可重复读</th>
+<th align="center">幻读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">未提交读</td>
+<td align="center">最低级别，只能保证不读取物理上损坏的数据</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+</tr>
+<tr>
+<td align="center">已提交读</td>
+<td align="center">语句级</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="center">Y</td>
+</tr>
+<tr>
+<td align="center">可重复读</td>
+<td align="center">事务级</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="center">N</td>
+</tr>
+<tr>
+<td align="center">可序列化</td>
+<td align="center">最高级别，事务级</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="center">N</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h2 id="锁机制"><a href="#锁机制" class="headerlink" title="锁机制"></a>锁机制</h2><p>为解决数据库并发控制问题，MySQL中使用了锁机制。如在同一时刻，客户端对于同一个表做更新或查询操作，为了保证数据的一致性，需要对并发操作进行控制。与此同时,为实现Mysql的各个隔离级别，锁机制为其提供安全保障</p>
+<p><strong>锁粒度：</strong> 尽量只锁定需要修改的部分数据，而不是所有的资源。只对修改的数据片进行精确的锁定。任何时候，在给定的资源上，锁定的数据量越少，则系统的并发程度越高，只要相互之间不发生冲突即可。</p>
+<p><strong>锁策略：</strong> 就是在锁的开销和数据的安全性之间寻求平衡。</p>
+<p><strong>两种重要的锁策略：</strong></p>
+<ul>
+<li><p><strong>表锁（table lock）</strong></p>
+<ul>
+<li>表锁管理锁的开销最小，同时允许的并发量也是最小的，MyISAM存储引擎使用的该锁机制。</li>
+<li> 表锁时Mysql中最基本的锁策略，并且时开销最小的策略。<strong>表锁会锁定整张表</strong>。一个用户在对表进行写操作（插入、删除、更新等），需要先获得写锁，这会阻塞其他用户对该表的所有读写操作。只有没有写锁是，其他读取的用户才能获得读锁，读锁之间是不相互阻塞的。</li>
+</ul>
+</li>
+<li><p><strong>行级锁（row lock）</strong></p>
+<ul>
+<li>行级锁可以最大程度地支持并发处理（同时也带来了最大的锁开销）。</li>
+<li>如果要支持并发读写，建议采用InnoDB存储引擎</li>
+</ul>
+</li>
+</ul>
+<h3 id="共享锁"><a href="#共享锁" class="headerlink" title="共享锁"></a>共享锁</h3><p>共享锁的锁粒度是行或者多行。一个事务获取了共享锁以后，可以对锁定范围内的数据执行读操作。</p>
+<h3 id="排他锁"><a href="#排他锁" class="headerlink" title="排他锁"></a>排他锁</h3><p>排他锁的粒度与共享锁相同，也是行或者多行。一个事务获取了排他锁之后，可以对锁定范围内的数据执行写操作。</p>
+<h3 id="意向锁"><a href="#意向锁" class="headerlink" title="意向锁"></a>意向锁</h3><p>意向锁是一种表锁，锁定的粒度是整张表，分为意向共享锁和意向排他锁两类。</p>
+<ul>
+<li>意向表示一个事务有意对数据上共享锁或者排他锁。“有意”表示事务想执行操作但还没真正的执行。</li>
+<li>锁a和锁b是同一组数据时：<ul>
+<li>意向共享锁：如果事务t1获取了锁a，另一个事务t2还可以获取锁b，相容。</li>
+<li>意向排他锁：如果事务t1获取了锁a，另一个事务t2在t1被释放之前无法获取锁b，相斥。</li>
+</ul>
+</li>
+</ul>
+<p>​                                                                                                                        MySQL锁兼容情况</p>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">排他锁</th>
+<th align="center">共享锁</th>
+<th align="center">意向排他锁</th>
+<th align="center">意向共享锁</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">排他锁</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="center">Y</td>
+</tr>
+<tr>
+<td align="center">共享锁</td>
+<td align="center">N</td>
+<td align="center">Y</td>
+<td align="center">N</td>
+<td align="center">Y</td>
+</tr>
+<tr>
+<td align="center">意向排他锁</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+</tr>
+<tr>
+<td align="center">意向共享锁</td>
+<td align="center">N</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h3 id="死锁的处理"><a href="#死锁的处理" class="headerlink" title="死锁的处理"></a>死锁的处理</h3><p>InnoDB存储引擎自动检测事务的死锁，并返回一个或几个事务来防止死锁。InnoDB存储引擎不能在Mysql设定表锁的范围或者涉及InnoDB之外的存储引擎</p>
+<h2 id="事务应用"><a href="#事务应用" class="headerlink" title="事务应用"></a>事务应用</h2><p>事务的开始与结束可以有用户显示控制。在MySQL服务器中，显示操作事务的语句主要有：START    TRANSACTION、COMMIT和ROLLBACK。</p>
+<h3 id="启动事务"><a href="#启动事务" class="headerlink" title="启动事务"></a>启动事务</h3><p>在默认设置下，MySQL中的事务时默认提交的。</p>
+<pre><code class="mysql">start transaction    
+
+begin </code></pre>
+<h3 id="提交事务"><a href="#提交事务" class="headerlink" title="提交事务"></a>提交事务</h3><p>Mysql中对象的创建、修改和删除等都会隐式地执行事务的提交</p>
+<pre><code>commit 
+commit work</code></pre>
+<h3 id="回滚事务"><a href="#回滚事务" class="headerlink" title="回滚事务"></a>回滚事务</h3><pre><code>rollback
+rollback work</code></pre>
+<h3 id="事务保存点"><a href="#事务保存点" class="headerlink" title="事务保存点"></a>事务保存点</h3><p>除了启动事务，提交事务和回滚事务外，在事务中还可以设置保存点savepoint，可以将处理的事务回滚至保存点。</p>
+<p><strong>创建保存点：</strong> 允许在事务回滚至保存点，一个事务中可以有多个保存点</p>
+<pre><code>savepoint identifier</code></pre>
+<p><strong>删除保存点：</strong> 当没有一个保存点时执行此语句会抛异常。</p>
+<pre><code>release savepoint identifier</code></pre>
+<p><strong>把事务回滚到保存点：</strong> 给出保存点，可以把事务回滚到指定的保存点。如果不给出保存点，则回滚到启动事务之前的状态。</p>
+<pre><code>rollback to identifier</code></pre>
+<p><strong>查询事务的隔离级别</strong></p>
+<pre><code>show variables like &#39;%isolation%&#39;</code></pre>
+<h3 id="设置事务的隔离级别"><a href="#设置事务的隔离级别" class="headerlink" title="设置事务的隔离级别"></a>设置事务的隔离级别</h3><pre><code>show variables like &#39;%isolation%&#39;</code></pre>
+<h3 id="查询事务的隔离级别"><a href="#查询事务的隔离级别" class="headerlink" title="查询事务的隔离级别"></a>查询事务的隔离级别</h3><pre><code>SET [SESSION | GLOBAL] TRANSACTION ISOLATION LEVEL &#123;READ UNCOMMITTED | READ COMMITTED | REPEATABLE READ SERIALIZABLE&#125;</code></pre>
+<h2 id="事务日志"><a href="#事务日志" class="headerlink" title="事务日志"></a>事务日志</h2><p>MySQL中，InnoDB存储引擎引入了与事务相关REDO和UNDO日志。</p>
+<h4 id="REDO日志"><a href="#REDO日志" class="headerlink" title="REDO日志"></a>REDO日志</h4><p>​    事务执行时需要将执行的事务日志写到日志文件中，对应的文件为REDO日志。当每条SQL进行数据库更新操作时，首先将REDO日志写入到日志缓存区。当客户端执行COMMIT命令提交时，日志缓存区的内容将刷新到磁盘，日志缓冲区的刷新方式和时间间隔可以通过参数innodb_flush_log_at_trx_commit控制。</p>
+<p>​    REDO日志对应磁盘删的ib_logfileN文件，该文件默认为5MB，建议设置为512MB，以便容纳较大的事务。在MySQL崩溃恢复时会重新执行REDO日志的记录。</p>
+<h4 id="UNDO日志"><a href="#UNDO日志" class="headerlink" title="UNDO日志"></a>UNDO日志</h4><p>​    与REDO日志相反，UNDO日志主要用于事务异常时的数据回滚，具体内容就是复制事务前的数据库内容到UNDO缓冲区，然后再合适的时间将内容刷新到磁盘。</p>
+<p>​    与REDO日志不同的是，磁盘不存在单独的UNDO日志文件，所有的UNDO日志均存放在表空间对应的.ibd数据文件中。</p>
+
+        </div>
+        <footer>
+            <p class="meta">
+                <span class="byline author vcard">Posted by <span class="fn">Reddy Fan</span></span>
+                <time datetime="2020-12-17T00:36:48.052Z" data-updated="true">Thu Dec 17 2020</time>
+                
+            </p>
+            <div class="sharing">
+    
+        <a class="twitter-share-button"
+           target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=">
+            Tweet
+        </a>
+    
+</div>
+
+            <p class="meta">
+                
+
+                
+                <a class="basic-alignment right" href="/" title="Previous Post: "> »</a>
+                
+            </p>
+        </footer>
+    </article>
+
+    
+
+</div>
+
+<aside class="sidebar">
+    <section class="odd">
+    <h1>Recent Posts</h1>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/%E4%BA%8B%E5%8A%A1/">事务</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">数据库安装和基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/re%E6%A8%A1%E5%9D%97/">re模块</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/">数据库相关操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/%E5%AD%97%E5%85%B8/">字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/16/hello-world/">Hello World</a></li></ul>
+</section><section class="even">
+    <h1>GitHub Repos</h1>
+    <ul id="gh_repos">
+        <li class="loading">Status updating&#8230;</li>
+    </ul>
+
+    <a target="_blank" rel="noopener" href="https://github.com/your_github">@your_github</a> on GitHub
+
+    <script>
+        $(document).ready(function(){
+            const options = {
+                user: 'your_github',
+                count: 0,
+                skip_forks: true,
+                target: '#gh_repos'
+            }
+
+            function escapeHtml(str) {
+                return $('<div/>').text(str).html();
+            }
+
+            function render(target, repos){
+                let i, fragment = '', t = $(target)[0];
+
+                for(i = 0; i < repos.length; i++) {
+                    fragment += '<li><a href="'+repos[i].html_url+'">'+repos[i].name+'</a><p>'+escapeHtml(repos[i].description||'')+'</p></li>';
+                }
+                t.innerHTML = fragment;
+            }
+
+            $.ajax({
+                url: "https://api.github.com/users/"+options.user+"/repos?sort=pushed&callback=?",
+                dataType: 'jsonp',
+                error: function (err) {
+                    $(options.target + ' li.loading').addClass('error').text("Error loading feed");
+                },
+                success: function(data) {
+                    var repos = [];
+                    if (!data || !data.data) { return; }
+                    for (var i = 0; i < data.data.length; i++) {
+                        if (options.skip_forks && data.data[i].fork) { continue; }
+                        repos.push(data.data[i]);
+                    }
+                    if (options.count) { repos.splice(options.count); }
+                    render(options.target, repos);
+                }
+            });
+        });
+    </script>
+</section>
+</aside>
+
+    </div>
+</div>
+
+<footer role="contentinfo">
+    <p>
+        Copyright © 2020 - Reddy Fan -
+        <span class="credit">Generated using <a target="_blank" rel="noopener" href="https://github.com/jbreckmckye/hexo-theme-octo">Octo theme</a> for <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></span>
+    </p>
+</footer>
+
+
+
+</body>
+</html>
