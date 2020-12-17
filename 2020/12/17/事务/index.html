@@ -6,7 +6,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="zh"><!--<![endif]-->
 <head>
     <meta charset="UTF-8">
-    <title>范金炜的学习笔记</title>
+    <title>事务</title>
 
     <meta name="author" content="Reddy Fan">
 
@@ -18,8 +18,6 @@
 
     <link rel="canonical" href="http://reddyfan.cool/2020/12/17/事务/">
 
-    
-        <link rel="alternate" href="/atom.xml" type="application/atom+xml">
     
 
     
@@ -84,10 +82,6 @@
 
 <nav role="navigation">
     
-        <ul class="subscription" data-subscription="rss">
-            <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-        </ul>
-    
 
     <form action="https://google.com/search" method="get">
         <fieldset role="search">
@@ -111,9 +105,9 @@
         <div>
     <article class="hentry" role="article">
         <header>
-            <h1 class="entry-title"></h1>
+            <h1 class="entry-title">事务</h1>
             <p class="meta">
-                <time datetime="2020-12-17T00:36:48.052Z" data-updated="true">Thu Dec 17 2020</time>
+                <time datetime="2020-12-17T02:11:14.000Z" data-updated="true">Thu Dec 17 2020</time>
             </p>
         </header>
         <div class="entry-content">
@@ -368,13 +362,19 @@
         <footer>
             <p class="meta">
                 <span class="byline author vcard">Posted by <span class="fn">Reddy Fan</span></span>
-                <time datetime="2020-12-17T00:36:48.052Z" data-updated="true">Thu Dec 17 2020</time>
+                <time datetime="2020-12-17T02:11:14.000Z" data-updated="true">Thu Dec 17 2020</time>
                 
+    <span class="categories">
+    
+        <a class="category" href="/tags/DB/">DB</a>
+    
+    </span>
+
             </p>
             <div class="sharing">
     
         <a class="twitter-share-button"
-           target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=">
+           target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=%E4%BA%8B%E5%8A%A1">
             Tweet
         </a>
     
@@ -382,9 +382,11 @@
 
             <p class="meta">
                 
+                <a class="basic-alignment left" href="/" title="Previous Post: re模块">« re模块</a>
+                
 
                 
-                <a class="basic-alignment right" href="/" title="Previous Post: "> »</a>
+                <a class="basic-alignment right" href="/" title="Previous Post: 数据库相关操作">数据库相关操作 »</a>
                 
             </p>
         </footer>
@@ -397,19 +399,19 @@
 <aside class="sidebar">
     <section class="odd">
     <h1>Recent Posts</h1>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/%E4%BA%8B%E5%8A%A1/">事务</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">数据库安装和基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/re%E6%A8%A1%E5%9D%97/">re模块</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/">数据库相关操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/%E5%AD%97%E5%85%B8/">字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/16/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">数据库安装和基本操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/re%E6%A8%A1%E5%9D%97/">re模块</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/%E4%BA%8B%E5%8A%A1/">事务</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/">数据库相关操作</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/%E5%AD%97%E5%85%B8/">字典</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/17/hello-world/">Hello World</a></li></ul>
 </section><section class="even">
     <h1>GitHub Repos</h1>
     <ul id="gh_repos">
         <li class="loading">Status updating&#8230;</li>
     </ul>
 
-    <a target="_blank" rel="noopener" href="https://github.com/your_github">@your_github</a> on GitHub
+    <a target="_blank" rel="noopener" href="https://github.com/https://github.com/reddyfan/">@https://github.com/reddyfan/</a> on GitHub
 
     <script>
         $(document).ready(function(){
             const options = {
-                user: 'your_github',
+                user: 'https://github.com/reddyfan/',
                 count: 0,
                 skip_forks: true,
                 target: '#gh_repos'
